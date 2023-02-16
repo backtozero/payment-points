@@ -1,0 +1,13 @@
+syntax = "proto3";
+package com.anymindgroup.proto;
+
+option java_package = "com.anymindgroup.service";
+option java_outer_classname = "PaymentServiceProto";
+option objc_class_prefix = "HLW";
+
+import "resources.proto";
+
+service PaymentService {
+    rpc CalculatePayment(PaymentRequest) returns (PaymentResponse) {}
+    rpc querySales(SalesRequest) returns(SalesResponse) {};
+}

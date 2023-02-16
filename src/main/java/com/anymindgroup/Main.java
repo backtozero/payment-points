@@ -1,35 +1,26 @@
 package com.anymindgroup;
 
-import org.springframework.boot.CommandLineRunner;
+import com.anymindgroup.service.PaymentServiceGrpc;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @SpringBootApplication
 public class Main {
 
-    public static void main(String[] args) {
-        var test = new ArrayList<>();
+    public static void main(String[] args) throws InterruptedException, IOException {
+        Server server = ServerBuilder.forPort(9090)
+                .addService(new PaymentServiceGrpc.PaymentServiceImplBase() {
+                    // your service implementation here
+                })
+                .build();
+        server.start();
+        server.awaitTermination();
+
         SpringApplication.run(Main.class, args);
     }
-
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-
-            System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }
-
-        };
-    }
-
 }

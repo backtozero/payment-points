@@ -2,28 +2,21 @@ package com.anymindgroup.dto;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import org.springframework.data.util.Pair;
+
 import java.math.BigDecimal;
 
+@Data
 public class PaymentResponse {
     @Schema(description = "Final price", example = "95.00")
-    private BigDecimal finalPrice;
+    private final BigDecimal finalPrice;
 
     @Schema(description = "Earned points", example = "5")
-    private int points;
+    private final int points;
 
-    public BigDecimal getFinalPrice() {
-        return finalPrice;
-    }
-
-    public void setFinalPrice(BigDecimal finalPrice) {
-        this.finalPrice = finalPrice;
-    }
-
-    public int getPoints() {
-        return this.points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+    public PaymentResponse(Pair<BigDecimal, Integer> priceAndEarnedPoints) {
+        this.finalPrice = priceAndEarnedPoints.getFirst();
+        this.points = priceAndEarnedPoints.getSecond();
     }
 }

@@ -1,0 +1,53 @@
+syntax = "proto3";
+package com.anymindgroup.proto;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "com.anymindgroup.proto";
+
+message PaymentRequest {
+    string customerId = 1;
+    double price = 2;
+    double priceModifier = 3;
+    string paymentMethod = 4;
+    google.protobuf.Timestamp datetime = 5;
+    map<string, string> additionalItem = 6;
+}
+
+message PaymentResponse {
+    double finalPrice = 1;
+    int32 points = 2;
+}
+
+message SalesRequest {
+    string startDateTime = 1;
+    string endDateTime = 2;
+}
+
+message SalesHistory {
+    string datetime = 1;
+    string sales = 2;
+    double points = 3;
+}
+
+message SalesResponse {
+    repeated SalesHistory sales = 1;
+}
+
+message ErrorInfo {
+    // {"error": suitable error}
+    ErrorBody error = 1;
+}
+
+message ErrorBody {
+    string errorCode = 1;
+    string message = 2;
+
+    repeated ValidationError validation_errors = 3;
+}
+
+message ValidationError {
+    string field = 1;
+    string message = 2;
+}
