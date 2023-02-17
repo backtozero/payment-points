@@ -23,13 +23,13 @@ public class PaymentMethodEntity {
     @Column(name = "points_coefficient")
     private BigDecimal pointsCoefficient;
 
-    @ManyToMany(mappedBy = "paymentMethod",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "paymentMethod", fetch = FetchType.EAGER)
     @JoinTable(name = "payment_method_courier",
             joinColumns = @JoinColumn(name = "payment_method_name"),
             inverseJoinColumns = @JoinColumn(name = "courier_name"))
     private List<Courier> couriersAllowed;
 
-    @ManyToMany(mappedBy = "paymentMethod",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "paymentMethod", fetch = FetchType.EAGER)
     @JoinTable(name = "payment_method_additional_fields_to_save",
             joinColumns = @JoinColumn(name = "payment_method_name"),
             inverseJoinColumns = @JoinColumn(name = "field_name"))

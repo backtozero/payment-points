@@ -28,7 +28,7 @@ INSERT INTO payment_methods (payment_method_name, price_modifier_start, price_mo
 VALUES ('CHEQUE', 0.9, 1, 0, 'Should accept and store bank and account number information');
 
 -- changeset mike:liquibase:2
-CREATE TABLE sales_history (event_timestamp timestamp(3) PRIMARY KEY, request_timestamp timestamp(3), payment_method_name varchar(255) REFERENCES payment_methods,  price decimal, points_earned decimal, additional_info jsonb);
+CREATE TABLE sales_history (event_timestamp timestamp(3) PRIMARY KEY, request_timestamp timestamp(3), customer_id varchar(255), payment_method_name varchar(255) REFERENCES payment_methods,  price decimal, points_earned decimal, additional_info jsonb);
 CREATE TABLE couriers (courier_name varchar(255) PRIMARY KEY, description varchar(255));
 INSERT INTO couriers (courier_name, description) VALUES ('YAMATO', NULL);
 INSERT INTO couriers (courier_name, description) VALUES ('SAGAWA', NULL);

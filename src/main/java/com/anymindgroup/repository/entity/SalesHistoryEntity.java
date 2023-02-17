@@ -18,6 +18,10 @@ public class SalesHistoryEntity {
     private LocalDateTime eventTimestamp;
     @Column(name = "request_timestamp")
     private LocalDateTime requestTimestamp;
+    @Column(name = "customer_id")
+    private String customerId;
+    @Column(name = "payment_method_name")
+    private String paymentMethodName;
     @Column(name = "price")
     private BigDecimal price;
     @Column(name = "points_earned")

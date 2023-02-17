@@ -49,6 +49,15 @@ public class PaymentMethodServiceGrpcImpl extends PaymentServiceGrpc.PaymentServ
 
             responseObserver.onError(StatusProto.toStatusRuntimeException(status));
         } catch (Exception e) {
+            var errorInfo = ErrorInfo.newBuilder().build();
+
+            var status =
+                    com.google.rpc.Status.newBuilder()
+                            .setCode(Code.INTERNAL.getNumber())
+                            .setMessage("Unexpected error")
+                            .addDetails(Any.pack(errorInfo))
+                            .build();
+
             responseObserver.onError(Status.INVALID_ARGUMENT
                     .withDescription("Invalid request")
                     .asRuntimeException());
