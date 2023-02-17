@@ -1,14 +1,10 @@
 package com.anymindgroup.configuration;
 
-import com.anymindgroup.mapper.GeneralMapper;
-import com.anymindgroup.service.PaymentMethodCalcService;
 import com.anymindgroup.service.PaymentMethodServiceGrpcImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 
@@ -17,12 +13,6 @@ import java.io.IOException;
 @Configuration
 @Slf4j
 public class MainConfiguration implements ApplicationListener<ContextRefreshedEvent> {
-
-    @Autowired
-    @Bean
-    public PaymentMethodServiceGrpcImpl paymentMethodServiceGrpcImpl(PaymentMethodCalcService paymentMethodCalcService, GeneralMapper generalMapper) {
-        return new PaymentMethodServiceGrpcImpl(paymentMethodCalcService, generalMapper);
-    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {

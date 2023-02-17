@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.ConstraintDefinitionException;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import org.springframework.data.util.Pair;
@@ -44,7 +45,7 @@ public class PaymentController {
         return ResponseEntity.ok(new PaymentResponse(priceAndEarnedPoints));
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class, ConstraintDefinitionException.class})
     public ResponseEntity<BasicRestError> handleValidationException(Exception ex) {
         BasicRestError errorInfo = new BasicRestError(new ErrorInfo("COMMON_CODE", ex.getMessage()));
         return ResponseEntity.badRequest().body(errorInfo);

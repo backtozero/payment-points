@@ -1,14 +1,12 @@
 package com.anymindgroup.service;
 
 import com.anymindgroup.dto.PaymentRequest;
-import com.anymindgroup.validate.PaymentValidator;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Service
 public class PaymentMethodCalcService {
@@ -22,7 +20,7 @@ public class PaymentMethodCalcService {
      * Calculates final price and earned points
      * Saves request to database
      *
-     * @param request
+     * @param request Payment request
      * @return Pair of final price and earned points
      */
     @Transactional
@@ -31,8 +29,9 @@ public class PaymentMethodCalcService {
         var priceModifier = request.getPriceModifier();
 
         var finalPrice = calculateFinalPrice(request.getPrice(), priceModifier);
-        var earnedPoints = calculateEarnedPoints(priceModifier, paymentMethod.getPointsCoefficient());
+        var earnedPoints = calculateEarnedPoints(request.getPrice(), paymentMethod.getPointsCoefficient());
 
+        paymentMethodDataService.saveCustomerRequest(request, finalPrice, earnedPoints);
         return Pair.of(finalPrice, earnedPoints.intValue());
     }
 

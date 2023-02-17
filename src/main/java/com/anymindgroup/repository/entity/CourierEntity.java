@@ -7,12 +7,12 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "additional_fields_to_save")
+@Table(name = "couriers")
 @Data
-public class Field {
+public class CourierEntity {
     @Id
-    @Column(name = "field_name")
-    private String fieldName;
+    @Column(name = "courier_name")
+    private String courierName;
 
     @Column(name = "description")
     private String description;

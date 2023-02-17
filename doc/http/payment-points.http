@@ -1,0 +1,7 @@
+### Request
+POST http://localhost:8080/api/345/payment
+Content-Type: application/json
+
+{
+    "customerId":"12345", "price": "100.00", "priceModifier": 0.95,"paymentMethod": "MASTERCARD", "datetime": "2022-09-01T00:00:00Z", "additionalItem":{"last4": "1234" }
+}

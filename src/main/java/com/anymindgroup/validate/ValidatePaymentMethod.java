@@ -11,4 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PaymentValidator.class)
 public @interface ValidatePaymentMethod {
+    String message() default "Payment data is not valid";
+    Class[] groups() default {};
+    Class[] payload() default {};
 }

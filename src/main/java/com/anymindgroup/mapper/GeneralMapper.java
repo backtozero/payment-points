@@ -26,5 +26,11 @@ public interface GeneralMapper {
         return LocalDateTime.ofEpochSecond(value.getSeconds(), value.getNanos(), ZoneOffset.UTC);
     }
 
-    Timestamp map(LocalDateTime value);
+    default Timestamp map(LocalDateTime value) {
+        Instant instant = value.toInstant(ZoneOffset.UTC);
+        return Timestamp.newBuilder()
+                .setSeconds(instant.getEpochSecond())
+                .setNanos(instant.getNano())
+                .build();
+    }
 }

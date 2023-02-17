@@ -17,7 +17,7 @@ public interface SalesHistoryRepository extends JpaRepository<SalesHistoryEntity
      *  How much sales were made within a date range broken down into hours
      */
     @Query("""
-            SELECT hour(she.eventTimestamp) as hour, SUM(she.price) as total_sales
+            SELECT hour(she.eventTimestamp) as hour, SUM(she.finalPrice) as total_sales
             FROM SalesHistoryEntity she
             WHERE she.eventTimestamp BETWEEN :from AND :to
             GROUP BY hour(she.eventTimestamp)
@@ -29,7 +29,7 @@ public interface SalesHistoryRepository extends JpaRepository<SalesHistoryEntity
      * List of sales and the points given out to the customer
      */
     @Query("""
-            SELECT she.customerId, she.pointsEarned, she.price, she.eventTimestamp
+            SELECT she.customerId, she.pointsEarned, she.finalPrice, she.eventTimestamp
             FROM SalesHistoryEntity she
             WHERE she.customerId = :customerId
             """)
