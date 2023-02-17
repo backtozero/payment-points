@@ -13,7 +13,7 @@ import jakarta.validation.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+//@Service
 public class PaymentMethodServiceGrpcImpl extends PaymentServiceGrpc.PaymentServiceImplBase {
 
     private final PaymentMethodCalcService paymentMethodCalcService;

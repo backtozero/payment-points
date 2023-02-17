@@ -46,8 +46,8 @@ INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field
 INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('MASTERCARD', 'last4');
 INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('AMEX', 'last4');
 INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('JCB', 'last4');
-INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('BANK_TRANSFER', 'bank');
-INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('BANK_TRANSFER', 'account');
+INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('BANK TRANSFER', 'bank');
+INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('BANK TRANSFER', 'account');
 INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('CHEQUE', 'bank');
 INSERT INTO payment_method_additional_fields_to_save (payment_method_name, field_name) VALUES ('CHEQUE', 'cheque');
 

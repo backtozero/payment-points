@@ -2,9 +2,14 @@ package com.anymindgroup.mapper;
 
 import com.anymindgroup.proto.PaymentRequest;
 import com.anymindgroup.proto.PaymentResponse;
+import com.google.protobuf.Timestamp;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 @Service
@@ -16,4 +21,10 @@ public interface GeneralMapper {
     com.anymindgroup.dto.PaymentResponse map(PaymentResponse paymentRequest);
 
     PaymentResponse map(com.anymindgroup.dto.PaymentResponse paymentRequest);
+
+    default LocalDateTime map(Timestamp value) {
+        return LocalDateTime.ofEpochSecond(value.getSeconds(), value.getNanos(), ZoneOffset.UTC);
+    }
+
+    Timestamp map(LocalDateTime value);
 }

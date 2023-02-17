@@ -17,10 +17,10 @@ public interface SalesHistoryRepository extends JpaRepository<SalesHistoryEntity
      *  How much sales were made within a date range broken down into hours
      */
     @Query("""
-            SELECT date_trunc('hour', she.eventTimestamp) as hour, SUM(she.price) as total_sales
+            SELECT hour(she.eventTimestamp) as hour, SUM(she.price) as total_sales
             FROM SalesHistoryEntity she
             WHERE she.eventTimestamp BETWEEN :from AND :to
-            GROUP BY date_trunc('hour', she.eventTimestamp)
+            GROUP BY hour(she.eventTimestamp)
             """)
     List<CustomerSalesByHour> findByEventTimestampBetween(LocalDateTime from, LocalDateTime to);
 

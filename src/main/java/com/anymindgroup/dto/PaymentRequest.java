@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Data
@@ -30,7 +30,7 @@ public class PaymentRequest {
 
     @Schema(description = "Datetime of payment", example = "2022-09-01T00:00:00Z")
     @NotBlank
-    private ZonedDateTime datetime;
+    private LocalDateTime datetime;
 
     @Schema(description = "Additional information")
     private Map<String, String> additionalItem;
